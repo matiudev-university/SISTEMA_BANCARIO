@@ -35,6 +35,8 @@ def init_db():
                 FOREIGN KEY (id_cliente) REFERENCES clientes(id)
             )""")
 
+        cursor.execute("ALTER TABLE clientes ADD COLUMN password TEXT")
+
         connection.commit()
         print("✅ DB Inicializada con Exito!")
 

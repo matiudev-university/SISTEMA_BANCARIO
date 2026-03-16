@@ -13,6 +13,11 @@ def menu():
         print("1. Iniciar sesión")
         print("2. Registrar usuario")
 
+        rut = input("Introduzca su Rut: ")
+        password = input("Ingrese su Contraseña: ")
+
+        
+
         print("\n--- CLIENTES (CRUD) ---")
         print("3. Registrar cliente")
         print("4. Listar clientes")
