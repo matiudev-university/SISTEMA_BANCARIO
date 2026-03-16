@@ -1,10 +1,10 @@
 from db.db import get_connection
 
 class Cuenta:
-    def __init__(self, id_cliente, tipo_cuenta, saldo=0.0, estado="Activa", id_cuenta=None):
+    def __init__(self, id_cliente, id_tipo_cuenta, saldo=0.0, estado="Activa", id_cuenta=None):
         self.id_cuenta = id_cuenta
         self.id_cliente = id_cliente
-        self.tipo_cuenta = tipo_cuenta
+        self.id_tipo_cuenta = id_tipo_cuenta
         self.saldo = saldo
         self.estado = estado
 
@@ -19,7 +19,7 @@ class Cuenta:
         with get_connection() as connection:
             cursor = connection.cursor()
             query = """
-                INSERT INTO cuentas (id_cliente, tipo_cuenta, saldo)
+                INSERT INTO cuentas (id_cliente, id_tipo_cuenta, saldo)
                 VALUES (?, ?, ?)
             """
             cursor.execute(query, (id_cliente, tipo, saldo_inicial))
@@ -33,7 +33,7 @@ class Cuenta:
         
         with get_connection() as connection:
             cursor = connection.cursor()
-            query = "SELECT saldo, tipo_cuenta, estado FROM cuentas WHERE id_cuenta = ?"
+            query = "SELECT saldo, id_tipo_cuenta, estado FROM cuentas WHERE id = ?"
             cursor.execute(query, (id_cta,))
             row = cursor.fetchone()
             

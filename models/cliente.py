@@ -51,7 +51,9 @@ class Cliente:
 
             # COMANDO SQL
             select_query = """
-                SELECT * FROM clientes
+            SELECT c.id, u.rut, u.nombre, u.apellido, u.fecha_nacimiento, u.direccion, u.telefono, u.correo
+            FROM cliente c
+            JOIN usuario u ON c.usuario_id = u.id
             """
 
             cursor.execute(select_query)
