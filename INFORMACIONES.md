@@ -4,4 +4,4 @@
 - Lo que hay que modificar
 - Lo que hay que revisar
 
-Aca vamos escribiendo lo que faltaria para cada uno saber sus tareas
+Aca vamos escribiendo lo que faltaria para cada uno saber sus tareas y lo que sigue
