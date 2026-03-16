@@ -26,7 +26,14 @@ def init_db():
         )""")
 
         cursor.execute("""
-                """)
+            CREATE TABLE IF NOT EXISTS cuentas(
+                id_cuenta INTEGER PRIMARY KEY AUTOINCREMENT,
+                id_cliente INTEGER NOT NULL,
+                tipo_cuenta TEXT NOT NULL,
+                saldo DECIMAL(10, 2) DEFAULT 0.0,
+                estado TEXT DEFAULT 'Activa',
+                FOREIGN KEY (id_cliente) REFERENCES clientes(id)
+            )""")
 
         connection.commit()
         print("✅ DB Inicializada con Exito!")

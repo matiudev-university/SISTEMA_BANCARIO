@@ -1,6 +1,6 @@
 from db.db import init_db
 from models.cliente import Cliente
-
+from models.cuentas import Cuenta
 def menu():
 
     while True:
@@ -31,39 +31,41 @@ def menu():
         print("\n0. Salir")
 
         opcion = input("\nSeleccione una opción: ")
-"""
+
         if opcion == "1":
-            iniciar_sesion()
-        pass
+            print("Función en desarrollo...") 
+        
         elif opcion == "2":
-            registrar_usuario()
-    
+            print("Función en desarrollo...")
+
         elif opcion == "3":
-            registrar_cliente()
+            Cliente.registrar_cliente()
 
         elif opcion == "4":
-            listar_clientes()
+            clientes = Cliente.listar_clientes()
+            for c in clientes:
+                print(c)
 
         elif opcion == "5":
-            actualizar_cliente()
+            print("Función de actualización en desarrollo...")
 
         elif opcion == "6":
-            eliminar_cliente()
+            print("Función de eliminación en desarrollo...")
 
         elif opcion == "7":
-            crear_cuenta()
+            Cuenta.crear_cuenta() 
 
         elif opcion == "8":
-            consultar_saldo()
+            Cuenta.consultar_saldo()
 
         elif opcion == "9":
-            deposito()
+            print("Depósito en desarrollo...")
 
         elif opcion == "10":
-            retiro()
+            print("Retiro en desarrollo...")
 
         elif opcion == "11":
-            transferencia()
+            print("Transferencia en desarrollo...")
 
         elif opcion == "0":
             print("Saliendo del sistema...")
@@ -71,7 +73,7 @@ def menu():
 
         else:
             print("Opción inválida, intente nuevamente.")
-"""
+
 init_db()
 menu()
 
