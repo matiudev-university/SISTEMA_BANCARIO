@@ -1,11 +1,6 @@
 from db.db import init_db
 from models.cliente import Cliente
 
-#Hola
-## HOla uwu
-## HOLA BRYAN
-## HOLA MATIAS
-
 def menu():
 
     while True:
