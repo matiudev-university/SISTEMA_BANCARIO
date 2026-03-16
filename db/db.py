@@ -14,7 +14,7 @@ def init_db():
         # Ejecutar Consultas
 
         cursor.execute("""
-            CREATE TABLE IF NOT EXISTS clientes(
+            CREATE TABLE IF NOT EXISTS cliente(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             rut TEXT NOT NULL,
             nombres TEXT NOT NULL,
@@ -22,7 +22,24 @@ def init_db():
             fecha_nacimiento DATE,
             direccion TEXT NOT NULL,
             telefono TEXT NOT NULL,
-            correo TEXT NOT NULL
+            correo TEXT NOT NULL,
+            password TEXT NOT NULL,
+        )""")
+
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS empleado(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            rut TEXT NOT NULL,
+            nombres TEXT NOT NULL,
+            apellidos TEXT NOT NULL,
+            fecha_nacimiento DATE,
+            direccion TEXT NOT NULL,
+            telefono TEXT NOT NULL,
+            correo TEXT NOT NULL,
+            password TEXT NOT NULL,
+            id_sucursal TEXT NOT NULL,
+
+            FOREIGN KEY(id_sucursal) REFERENCES 
         )""")
 
         cursor.execute("""
@@ -32,10 +49,25 @@ def init_db():
                 tipo_cuenta TEXT NOT NULL,
                 saldo DECIMAL(10, 2) DEFAULT 0.0,
                 estado TEXT DEFAULT 'Activa',
-                FOREIGN KEY (id_cliente) REFERENCES clientes(id)
+                       
+                FOREIGN KEY (id_cliente) REFERENCES usuarios(id)
             )""")
 
-        cursor.execute("ALTER TABLE clientes ADD COLUMN password TEXT")
+        
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS tipo_cuenta(
+                       )""")
+
+
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS sucursarl(
+                       )
+            """)
+        
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS transacciones(
+                       )            
+            """)
 
         connection.commit()
         print("✅ DB Inicializada con Exito!")

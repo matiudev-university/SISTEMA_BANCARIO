@@ -1,6 +1,9 @@
 from db.db import init_db
 from models.cliente import Cliente
 from models.cuentas import Cuenta
+from models.auth import Auth
+
+
 def menu():
 
     while True:
@@ -16,7 +19,11 @@ def menu():
         rut = input("Introduzca su Rut: ")
         password = input("Ingrese su Contraseña: ")
 
+        Auth.login(rut, password)
+
         
+
+
 
         print("\n--- CLIENTES (CRUD) ---")
         print("3. Registrar cliente")
