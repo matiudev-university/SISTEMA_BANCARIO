@@ -1,9 +1,44 @@
 from models.cliente import Cliente
 from models.cuentas import Cuenta
+from models.auth import Auth
+import getpass
+
+
 class Menu:
 
-    @staticmethod
-    def menu_empleado():
+
+    def menu_principal(self):
+        while True:
+            print("\n==============================")
+            print("      SISTEMA BANCARIO")
+            print("==============================")
+
+            print("\n--- AUTENTICACIÓN ---")
+
+            rut = input("Introduzca su Rut: ")
+            password = getpass.getpass("Ingrese su Contraseña: ")
+
+            usuario = Auth.login(rut, password)
+
+            if not usuario:
+                print("❌ RUT o contraseña incorrectos")
+                continue
+
+            print("✅ Inicio de sesión Exitoso!")
+            print("Bienvenido...")
+
+            rol = usuario["rol"]
+
+            if rol == "cliente":
+                self.menu_cliente()
+            elif rol == "empleado":
+                self.menu_empleado()
+            
+            # elif rol == "gerente":
+            #     Menu.menu_gerente()
+
+
+    def menu_empleado(self):
         while True:
             print("\n--- MENU EMPLEADO ---")
             print("1. Registrar Cliente")
@@ -39,8 +74,8 @@ class Menu:
                 case _:
                     print("❌ Opcion Invalida")
 
-    @staticmethod
-    def menu_cliente():
+
+    def menu_cliente(self):
         while True:
             print("\n--- MENU CLIENTE ---")
             print("1. Consultar Saldo")

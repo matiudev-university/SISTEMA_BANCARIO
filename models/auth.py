@@ -17,15 +17,13 @@ class Auth:
             
             usuario_id, hashed_db = usuario
 
- # Asegurarnos de que sea bytes
+            # Asegurarnos de que sea bytes
             if isinstance(hashed_db, str):
                 hashed_db = hashed_db.encode('utf-8')
 
             # Verificar contraseña
             if not bcrypt.checkpw(password.encode('utf-8'), hashed_db):
                 return None
-            
-            usuario_id = usuario[0]
 
             # verificar rol
             cursor.execute("SELECT id FROM cliente WHERE usuario_id = ?", (usuario_id,))
