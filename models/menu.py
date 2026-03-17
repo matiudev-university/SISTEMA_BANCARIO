@@ -10,7 +10,7 @@ class Menu:
     def menu_principal(self):
         while True:
             print("\n==============================")
-            print("      SISTEMA BANCARIOoooo")
+            print("      SISTEMA BANCARIO")
             print("==============================")
 
             print("\n--- AUTENTICACIÓN ---")
