@@ -1,4 +1,4 @@
-from db.db import get_connection
+from db.init_db import get_connection
 import bcrypt
 
 class Auth:

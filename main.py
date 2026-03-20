@@ -1,6 +1,6 @@
-from db.db import init_db
+from db.init_db import db_init
 from models.menu import Menu
 
-init_db()
+db_init()
 menu = Menu()
 menu.menu_principal()

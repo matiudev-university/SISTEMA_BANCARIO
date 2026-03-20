@@ -1,7 +1,7 @@
-from db.db import get_connection
-from utils.sanitizador import sanitizar_rut
+from db.init_db import get_connection
+from utils.utils import validar_rut
 from models.cliente import Cliente
-
+from utils.utils import generar_numero_cuenta
 
 class Cuenta:
     def __init__(self, id_cliente, id_tipo_cuenta, saldo=0.0, estado="Activa", id_cuenta=None):
@@ -11,9 +11,9 @@ class Cuenta:
         self.saldo = saldo
         self.estado = estado
 
+
     @staticmethod
     def crear_cuenta():
-        from db.db import get_connection
         
         print("\n=== APERTURA DE NUEVA CUENTA ===")
         
@@ -53,15 +53,18 @@ class Cuenta:
             except ValueError:
                 print("❌ Monto inválido. Debe ser un número entero.")
                 return
+            
+            # GENERAR NUMERO DE CUENTA
+            num_cuenta = generar_numero_cuenta()
 
             # 5. EJECUCIÓN DE LA APERTURA
             try:
                 # Insertar la cuenta
                 query_insert = """
-                    INSERT INTO cuentas (id_cliente, id_tipo_cuenta, saldo, estado)
-                    VALUES (?, ?, ?, 'ACTIVA')
+                    INSERT INTO cuentas (id_cliente, id_tipo_cuenta, numero_cuenta, saldo, estado)
+                    VALUES (?, ?, ?, ?, 'ACTIVA')
                 """
-                cursor.execute(query_insert, (id_cliente, id_tipo, monto_inicial))
+                cursor.execute(query_insert, (id_cliente, id_tipo, num_cuenta, monto_inicial))
                 
                 id_nueva_cuenta = cursor.lastrowid
 
@@ -197,9 +200,7 @@ class Cuenta:
         cursor.execute(query, (id_origen, id_destino, tipo, monto, glosa))
 
     @staticmethod
-    def transferir_a_terceros(usuario_id):
-        from db.db import get_connection
-        
+    def transferir_a_terceros(usuario_id):        
         with get_connection() as connection:
             cursor = connection.cursor()
             
@@ -239,8 +240,7 @@ class Cuenta:
 
             # 2. IDENTIFICAR DESTINATARIO POR RUT
             print("\n--- DATOS DEL DESTINATARIO ---")
-            rut_destino = input("Ingrese el RUT del destinatario: ")
-            rut_destino = sanitizar_rut(rut_destino)
+            rut_destino = validar_rut("Ingrese el RUT del destinatario: ")
             
             query_destinatario = """
                 SELECT cta.id, u.nombre, u.apellido 
@@ -312,9 +312,7 @@ class Cuenta:
     
     
     @staticmethod
-    def ver_historial_cliente(usuario_id):
-        from db.db import get_connection
-        
+    def ver_historial_cliente(usuario_id):        
         with get_connection() as connection:
             cursor = connection.cursor()
             
@@ -376,8 +374,8 @@ class Cuenta:
             print("=" * 75)
 
     def obtener_cuentas_por_rut(rut):
-        from utils.sanitizador import sanitizar_rut
-        rut = sanitizar_rut(rut)
+        from utils.utils import validar_rut
+        rut = validar_rut()
 
         with get_connection() as connection:
             cursor = connection.cursor()
@@ -394,7 +392,7 @@ class Cuenta:
             return cursor.fetchall()
         
     def mostrar_cliente_y_cuentas_por_rut(rut):
-        rut = sanitizar_rut(rut)
+        rut = validar_rut()
 
         cliente = Cliente.buscar_por_rut(rut)
 

@@ -1,7 +1,7 @@
 from models.cliente import Cliente
 from models.cuentas import Cuenta
 from models.auth import Auth
-from utils.sanitizador import sanitizar_rut
+from utils.utils import validar_rut
 from models.cliente import Cliente
 from models.cuentas import Cuenta
 import getpass
@@ -18,8 +18,7 @@ class Menu:
 
             print("\n--- AUTENTICACIÓN ---")
 
-            rut = input("Introduzca su Rut: ")
-            rut = sanitizar_rut(rut)
+            rut = validar_rut()
             password = getpass.getpass("Ingrese su Contraseña: ")
 
             usuario = Auth.login(rut, password)
@@ -66,6 +65,17 @@ class Menu:
                 case "2":
                     Cuenta.crear_cuenta()
                 case "3":
+                    clientes = Cliente.listar_clientes()
+                    print("\n" + "="*80)
+                    print(f"{'ID':<4} | {'RUT':<12} | {'NOMBRE COMPLETO':<25} | {'CORREO'}")
+                    print("-" * 80)
+                    for c in clientes:
+                        # Accedemos a los atributos del objeto que creó tu compañero
+                        nombre_full = f"{c.nombres} {c.apellidos}"
+                        print(f"{c._id:<4} | {c.rut:<12} | {nombre_full:<25} | {c.correo}")
+                    
+                    print("="*80)
+
                     Cuenta.consultar_saldo(usuario)
                 case "4" | "5":
                     print("Recuerda realizar los depósitos/retiros vía INSERT por ahora.")

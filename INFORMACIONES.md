@@ -4,7 +4,7 @@ Comandos
 - git add
 - git commit -m "INFORMACION DEL CAMBIO"
 - git push origin main
-- git pull oirign main (Trae los cambios de los compañeros)
+- git pull origin main (Trae los cambios de los compañeros)
 
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 - Lo que hay que agregar
@@ -15,15 +15,14 @@ Aca vamos escribiendo lo que faltaria para cada uno saber sus tareas y lo que si
 
 
 cambiar logica del sistema:
-Generar 2 roles (Cliente y gerente)
-3 clases persona, cliente y gerente
-Cliente debe ser capaz de ver movimientos de sus cuentas (consulta primero que cuenta quiere ver), ver montos de sus cuentas (consulta que cuenta ver) y ser capaz de transferir a cuentas que esten en la bd
-Tambien la tabla de clientes debe contener: id (pk), rut, nombres, apellido, contraseña, contacto, direccion,  
+⚠️ PENDIENTE ⚠️ Cliente debe ser capaz de ver movimientos de sus cuentas (consulta primero que cuenta quiere ver), ver montos de sus cuentas (consulta que cuenta ver) y ser capaz de transferir a cuentas que esten en la bd
+✅ Generar 2 roles (Cliente y gerente)
+✅ Tambien la tabla de clientes debe contener: id (pk), rut, nombres, apellido, contraseña, contacto, direccion,  
 
-Gerente debe ser capaz: registrar empleados, ver clientes, editar clientes, asginar tipo de cuentas, eliminar clientes, ver cuentas
+✅ Gerente debe ser capaz: registrar empleados, ver clientes, editar clientes, asginar tipo de cuentas, eliminar clientes, ver cuentas
 Tabla 
 
-Validar rut
+✅ Validar rut
 
 --MATIAS NO PUDE PROBAR NADA YA QUE LA BASE DE DATO HABIA QUE REINICAR Y NO SABIA XDDD PRUEBALO Y ME INDICAS LOS ERRORES PLOX
 
@@ -39,20 +38,20 @@ formato_clp ---- esta def es un auxiliar para formateo del dato a moneda chilena
 Cree la tabla transferencias:
 LA TABLA DE TRANSFERENCIA TIENE UNA CASILLA DE TIPO_MOVIMIENTO SE DEBE AGREGAR MANUALMENTE LOS TIPOS GIROS Y INGRESOS YA QUE EL SISTEMA NO ESTA PREPARADO PARA ESO
 
-Se modifico el listado de crear cliente con ver listar cliente estaban al reves, ademas cuando se listaban los cliente daba error porque en el menu aparece como c.id pero esta se llama c._id ##corregido 
+✅ Se modifico el listado de crear cliente con ver listar cliente estaban al reves, ademas cuando se listaban los cliente daba error porque en el menu aparece como c.id pero esta se llama c._id ##corregido 
 
-Se agrego la sanitizacion de rut en una carpeta fuera de models, como utils.sanitizador se ocupo en menu.py cuando se logea y cuando se registra un cliente nuevo estandar chileno
+✅ Se agrego la sanitizacion de rut en una carpeta fuera de models, como utils.sanitizador se ocupo en menu.py cuando se logea y cuando se registra un cliente nuevo estandar chileno
 
-se agrego obenter cuentas por el rut en cuentas 359
+✅ se agrego obtener cuentas por el rut en cuentas 359
 
-Se modifico la conexion de cliente y cuenta, abria 2 veces la conexion y daba error
+✅ Se modifico la conexion de cliente y cuenta, abria 2 veces la conexion y daba error
 
-Se creo en cliente buscar por rut en cliente.py y en cuenta.py 
+✅ Se creo en cliente buscar por rut en cliente.py y en cuenta.py 
 
 
 --------------------------------------------------------------------------------------------------------------------------
 
-3AM Emilio
+✅ 3AM Emilio
 arrgle el problema de no ver el nombre en el login donde dice "Bienvenido {usuario}"
 ahora el remitente y el receptor ven el movimiento de sus cuentas las transferencias
 
@@ -61,3 +60,15 @@ ATT: yo el pixula
 --------------------------------------------------------------------------------------------------------------------------
 
 Queda por hacer INSTER manualmente para tener registrado los retiros y depositos en la tabla movimientos, tambien hay que hacer un reset de la BD.
+
+
+--------------------------------------------------------------------------------------------------------------------------
+20/03/2026
+
+⚠️ Al consultar saldo siendo empleado y poner un id inexistente, el sistema muestra que el cliente no tiene cuentas. Favor corregir, ya que puede ser un id de un empleado o de un cliente inexistente ⚠️
+
+⚠️ AL crear una cuenta para un usuario debe limitar a solo elegir el id mostrado en pantalla ⚠️
+
+⚠️ VALIDAR TODOS LOS CAMPOS DONDE HAYA INPUT
+
+⚠️ Crear una funcion que genere un numero de cuenta aleatorio de 10 digitos al momento de crear una cuenta y estye no se tiene que repetir 

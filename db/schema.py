@@ -1,19 +1,8 @@
-import sqlite3
-import os
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DB_PATH = os.path.join(BASE_DIR, "db", "sistema_bancario.db")
-
-def get_connection():
-    connection = sqlite3.connect(DB_PATH)
-    connection.execute("PRAGMA foreign_keys = ON")
-    return connection
-
-
-def init_db():
+def create_table():
+    from db.init_db import get_connection
+    
     with get_connection() as connection:
         cursor = connection.cursor()
-        # Ejecutar Consultas
 
         cursor.execute("""
             CREATE TABLE IF NOT EXISTS usuario(
@@ -56,16 +45,6 @@ def init_db():
         )""")
 
         cursor.execute("""
-            CREATE TABLE IF NOT EXISTS gerente(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            usuario_id INTEGER NOT NULL,
-            id_sucursal INTEGER,
-
-            FOREIGN KEY(usuario_id) REFERENCES usuario(id)
-            FOREIGN KEY(id_sucursal) REFERENCES sucursal(id)
-        )""")
-
-        cursor.execute("""
             CREATE TABLE IF NOT EXISTS tipo_cuenta(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             tipo_cuenta TEXT NOT NULL
@@ -76,10 +55,23 @@ def init_db():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             id_cliente INTEGER NOT NULL,
             id_tipo_cuenta INTEGER NOT NULL,
+            numero_cuenta INTEGER NOT NULL,
             saldo DECIMAL(10, 2) DEFAULT 0.0,
             estado TEXT DEFAULT 'Activa',                       
             FOREIGN KEY (id_cliente) REFERENCES cliente(id),
             FOREIGN KEY (id_tipo_cuenta) REFERENCES tipo_cuenta(id)
+        )""")
+
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS tarjetas(
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            id_cuenta INTEGER NOT NULL,
+            numero_tarjeta TEXT NOT NULL,
+            fecha_vencimiento TEXT,
+            cvv INTEGER,
+            estado TEXT DEFAULT 'ACTIVA',
+
+            FOREIGN KEY (id_cuenta) REFERENCES cuentas(id)
         )""")
         
         cursor.execute("""
@@ -95,21 +87,4 @@ def init_db():
             FOREIGN KEY (id_cuenta_destino) REFERENCES cuentas(id)
         )""")
 
-        tipos_a_insertar = [
-            (1, 'Corriente'),
-            (2, 'Ahorro'),
-            (3, 'Vista')
-        ]
-
-        cursor.executemany("""
-            INSERT OR IGNORE INTO tipo_cuenta (id, tipo_cuenta) 
-            VALUES (?, ?)
-        """, tipos_a_insertar)
-
-        # 3. FINALMENTE: El commit
-        connection.commit()
-        print("✅ DB Inicializada y Datos Base Cargados!")
-
-        connection.commit()
-        print("✅ DB Inicializada con Exito!")
-
+        print("✅ Tablas Creadas correctamente")

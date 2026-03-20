@@ -1,7 +1,7 @@
-from db.db import get_connection
+from db.init_db import get_connection
 import getpass
-from utils.sanitizador import sanitizar_rut
 import bcrypt
+from utils.utils import validar_rut
 
 
 class Cliente:
@@ -24,8 +24,7 @@ class Cliente:
     @staticmethod
     def registrar_cliente():
         print("\n=== REGISTRAR CLIENTE ===")
-        rut = input("Ingrese su Rut: ")
-        rut = sanitizar_rut(rut)
+        rut = validar_rut("Ingrese rut de cliente: ")
         nombres = input("Nombres: ")
         apellidos = input("Apellidos: ")
         fecha_nacimiento = input("Fecha nacimiento (YYYY-MM-DD): ")
@@ -95,9 +94,6 @@ class Cliente:
         
     @classmethod
     def buscar_por_rut(cls, rut):
-    
-        rut = sanitizar_rut(rut)
-
         with get_connection() as connection:
             cursor = connection.cursor()
 
