@@ -41,9 +41,6 @@ def generar_numero_cuenta(id_tipo_cuenta):
         3: "300"  # Ahorro
     }
         
-    # Obtenemos el prefijo o usamos uno genérico (900) si el ID no coincide
-    prefijo = prefijos.get(id_tipo_cuenta, "900")
-        
     with get_connection() as connection:
         cursor = connection.cursor()
             

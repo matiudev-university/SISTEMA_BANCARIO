@@ -49,9 +49,9 @@ class Menu:
             print("1. Registrar Cliente")
             print("2. Crear Cuenta")
             print("3. Consultar Saldo")
-            print("4. Depositar")
-            print("5. Retirar")
-            print("6. Transferencia")
+            #print("4. Depositar") #ELIMINAAR USUAIRO
+            #print("5. Retirar") #ELIMINAR CUENTA
+            #print("6. Transferencia")
             print("7. Listar Clientes")
             print("8. Consulta cliente y cuenta")
             print("0. Cerrar Sesión")

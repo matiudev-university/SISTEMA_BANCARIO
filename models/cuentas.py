@@ -43,9 +43,17 @@ class Cuenta:
             # 2. SELECCIÓN DEL DUEÑO
             id_cliente = int(input("\nIngrese el ID del cliente de la lista superior: "))
             
+            
+        while True:
             # 3. SELECCIÓN DE TIPO (Usando los IDs de tu tabla tipo_cuenta)
             print("\nTipos de cuenta: 1. Corriente | 2. Ahorro | 3. Vista")
-            id_tipo = int(input("Seleccione el tipo de cuenta: "))
+            entrada = int(input("Seleccione el tipo de cuenta: "))
+            if entrada in ["1", "2", "3"]:
+                id_tipo = int(entrada)
+                break
+            else:
+                print("❌ Error: Selección inválida. Por favor, elija 1, 2 o 3.")
+            
             nuevo_numero = Cuenta.generar_numero_cuenta(id_tipo)
             print(f"Número de cuenta: {nuevo_numero}")
             # 4. MONTO INICIAL
