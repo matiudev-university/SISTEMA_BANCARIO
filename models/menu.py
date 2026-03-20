@@ -8,8 +8,6 @@ import getpass
 
 
 class Menu:
-
-
     def menu_principal(self):
         while True:
             print("\n==============================")
@@ -46,13 +44,13 @@ class Menu:
     def menu_empleado(self, usuario):
         while True:
             print("\n--- MENU EMPLEADO ---")
-            print("1. Registrar Cliente")
-            print("2. Crear Cuenta")
-            print("3. Consultar Saldo")
+            print("1. Registrar Cliente") #⚠️ CLIENTE
+            print("2. Crear Cuenta") #⚠️ CUENTA
+            print("3. Consultar Saldo") #⚠️ CUENTA
             print("4. Depositar")
             print("5. Retirar")
             print("6. Transferencia")
-            print("7. Listar Clientes")
+            print("7. Listar Clientes") #⚠️ CLIENTE
             print("8. Consulta cliente y cuenta")
             print("0. Cerrar Sesión")
 
