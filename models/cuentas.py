@@ -234,7 +234,7 @@ class Cuenta:
             estado_origen = cuenta_origen[3] # Guardamos el estado
 
             # --- VALIDACIÓN DE ESTADO AGREGADA ---
-            if estado_origen != 'ACTIVA':
+            if estado_origen != 'Activa':
                 print(f"\n❌ Operación cancelada. La cuenta seleccionada está {estado_origen}.")
                 return
             # -------------------------------------
@@ -319,7 +319,7 @@ class Cuenta:
             
             # 1. LISTAR LAS CUENTAS DEL CLIENTE PARA QUE ELIJA
             query_cuentas = """
-                SELECT cta.id, tc.tipo_cuenta, cta.saldo 
+                SELECT cta.id, tc.tipo_cuenta, cta.saldo, cta.numero_cuenta
                 FROM cuentas cta
                 JOIN tipo_cuenta tc ON cta.id_tipo_cuenta = tc.id
                 JOIN cliente c ON cta.id_cliente = c.id
@@ -327,6 +327,7 @@ class Cuenta:
             """
             cursor.execute(query_cuentas, (usuario_id,))
             mis_cuentas = cursor.fetchall()
+            print(mis_cuentas)
 
             if not mis_cuentas:
                 print("\n❌ No tienes cuentas asociadas para ver historial.")
@@ -334,7 +335,7 @@ class Cuenta:
 
             print("\n=== SELECCIONE CUENTA PARA VER HISTORIAL ===")
             for i, c in enumerate(mis_cuentas, 1):
-                print(f"{i}. {c[1]} (ID: {c[0]})")
+                print(f"{i}. {c[1]} | Saldo: ${c[2]:,} | N° Cuenta: {c[3]} (ID: {c[0]})")
             
             opcion = input("\nSeleccione una cuenta (o '0' para volver): ")
             if opcion == "0" or not opcion.isdigit() or int(opcion) > len(mis_cuentas):

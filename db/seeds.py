@@ -69,5 +69,15 @@ def seed_data():
         ]
 
         cursor.executemany("""INSERT OR IGNORE INTO tipo_cuenta (id, tipo_cuenta) VALUES (?, ?)""", tipos_a_insertar)
+
+
+        # CUENTAS
+        cursor.execute("""
+            INSERT OR IGNORE INTO cuentas (id, id_cliente, id_tipo_cuenta, numero_cuenta, saldo, estado) VALUES (?, ?, ?, ?, ?, ?)
+        """,(1, 1, 3, 111121061232, 20000, 'Activa'))
+
+        cursor.execute("""
+            INSERT OR IGNORE INTO cuentas (id, id_cliente, id_tipo_cuenta, numero_cuenta, saldo, estado) VALUES (?, ?, ?, ?, ?, ?)
+        """,(2, 2, 1, 111119876543, 12000, 'Activa'))
         
         print("🌱 Datos iniciales insertados")
