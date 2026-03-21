@@ -65,13 +65,13 @@ Queda por hacer INSTER manualmente para tener registrado los retiros y depositos
 --------------------------------------------------------------------------------------------------------------------------
 20/03/2026
 
-⚠️ Al consultar saldo siendo empleado y poner un id inexistente, el sistema muestra que el cliente no tiene cuentas. Favor corregir, ya que puede ser un id de un empleado o de un cliente inexistente ⚠️
+✅ Al consultar saldo siendo empleado y poner un id inexistente, el sistema muestra que el cliente no tiene cuentas. Favor corregir, ya que puede ser un id de un empleado o de un cliente inexistente ⚠️
 
-⚠️ AL crear una cuenta para un usuario debe limitar a solo elegir el id mostrado en pantalla ⚠️
+✅ AL crear una cuenta para un usuario debe limitar a solo elegir el id mostrado en pantalla ⚠️
 
-⚠️ VALIDAR TODOS LOS CAMPOS DONDE HAYA INPUT
+✅ VALIDAR TODOS LOS CAMPOS DONDE HAYA INPUT
 
-⚠️ Crear una funcion que genere un numero de cuenta aleatorio de 10 digitos al momento de crear una cuenta y estye no se tiene que repetir 
+✅ Crear una funcion que genere un numero de cuenta aleatorio de 10 digitos al momento de crear una cuenta y estye no se tiene que repetir 
 
 ESPERANZA ESPERANZA ESPERANZA ESPERANZA
 ⚠️ El empleado debe se capaz de eliminar cuentas y personas PERO SOLO PUEDE ELIMINAR USUARIOS SI NO CONTIENEN CUENTAS ⚠️ 
